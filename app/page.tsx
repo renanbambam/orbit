@@ -1,102 +1,136 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  ChartNoAxesCombined,
+  KanbanSquare,
+  MessageSquare,
+  Orbit,
+  Users,
+  Zap,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export default function Home() {
+const FEATURES = [
+  {
+    icon: KanbanSquare,
+    title: "Kanban boards",
+    description:
+      "Drag tasks across customizable columns and keep work flowing from backlog to done.",
+  },
+  {
+    icon: Users,
+    title: "Team workspaces",
+    description:
+      "Invite your whole team with role-based access. Owners, admins, members, and viewers.",
+  },
+  {
+    icon: ChartNoAxesCombined,
+    title: "Progress dashboards",
+    description:
+      "Completion trends, status distribution, and team velocity — always up to date.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Comments & activity",
+    description:
+      "Discuss work where it happens and follow every change in the activity feed.",
+  },
+  {
+    icon: Zap,
+    title: "Fast by default",
+    description:
+      "Optimistic updates and server rendering keep every interaction instant.",
+  },
+  {
+    icon: Orbit,
+    title: "Projects that scale",
+    description:
+      "Break initiatives into projects with their own identifiers, like WEB-42.",
+  },
+];
+
+export default function LandingPage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div className="min-h-screen bg-gray-950 text-gray-100">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <span className="flex items-center gap-2 text-lg font-semibold">
+          <Orbit className="size-5 text-indigo-400" />
+          Orbit
+        </span>
+        <nav className="flex items-center gap-2">
+          <Button asChild variant="ghost" className="text-gray-300 hover:bg-gray-800 hover:text-white">
+            <Link href="/login">Sign in</Link>
+          </Button>
+          <Button asChild className="bg-indigo-500 text-white hover:bg-indigo-400">
+            <Link href="/register">Get started</Link>
+          </Button>
+        </nav>
+      </header>
+      <main>
+        <section className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 text-center">
+          <div className="pointer-events-none absolute inset-x-0 top-0 -z-0 mx-auto h-64 max-w-3xl rounded-full bg-indigo-500/20 blur-3xl" />
+          <h1 className="relative mx-auto max-w-3xl bg-gradient-to-b from-white to-gray-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent sm:text-6xl">
+            Mission control for your team&apos;s work
+          </h1>
+          <p className="relative mx-auto mt-6 max-w-xl text-lg text-gray-400">
+            Orbit brings projects, tasks, and progress tracking into one shared
+            workspace — so everyone knows what&apos;s moving and what&apos;s next.
+          </p>
+          <div className="relative mt-10 flex items-center justify-center gap-3">
+            <Button asChild size="lg" className="bg-indigo-500 text-white hover:bg-indigo-400">
+              <Link href="/register">Start for free</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-gray-700 bg-transparent text-gray-200 hover:bg-gray-800 hover:text-white"
+            >
+              <Link href="/login">Sign in</Link>
+            </Button>
+          </div>
+        </section>
+        <section className="mx-auto max-w-6xl px-6 pb-24">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-colors hover:border-gray-700"
+              >
+                <feature.icon className="size-6 text-indigo-400" />
+                <h2 className="mt-4 font-medium text-white">{feature.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-gray-400">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="border-t border-gray-800">
+          <div className="mx-auto max-w-6xl px-6 py-20 text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-white">
+              Ready to get your team in sync?
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-gray-400">
+              Create a workspace in seconds. No credit card required.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="mt-8 bg-indigo-500 text-white hover:bg-indigo-400"
+            >
+              <Link href="/register">Create your workspace</Link>
+            </Button>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="border-t border-gray-800">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 text-sm text-gray-500">
+          <span className="flex items-center gap-2">
+            <Orbit className="size-4" />
+            Orbit
+          </span>
+          <span>Built for teams that ship.</span>
+        </div>
       </footer>
     </div>
   );
